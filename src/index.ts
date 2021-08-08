@@ -1,17 +1,6 @@
-import { User } from "./models/User";
+import axios from "axios";
 
-const user = new User({ name: "Michal", age: 27 });
-
-user.on("change", () => {
-  console.log("change #1");
+axios.post("http://localhost:3000/users", {
+  name: "mynmae",
+  age: 20,
 });
-user.on("change", () => {
-  console.log("change #2");
-});
-user.on("save", () => {
-  console.log("Save was triggered");
-});
-
-user.trigger("change");
-
-user.trigger("save");
