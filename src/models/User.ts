@@ -45,4 +45,25 @@ export class User {
         this.set(response.data);
       });
   }
+
+  save(): void {
+    const id = this.get("id");
+    console.log("id", id);
+
+    if (id) {
+      // put
+      axios({
+        baseURL: `http://localhost:3000/users/${id}`,
+        method: "PUT",
+        data: this.data,
+      });
+    } else {
+      //post
+      axios({
+        baseURL: `http://localhost:3000/users`,
+        method: "POST",
+        data: this.data,
+      });
+    }
+  }
 }
