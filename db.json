@@ -4,9 +4,9 @@
       "id": 1
     },
     {
-      "name": "BlaBALA",
-      "age": 20,
-      "id": 2
+      "id": 2,
+      "name": "Newer name",
+      "age": 666
     },
     {
       "name": "new record",
