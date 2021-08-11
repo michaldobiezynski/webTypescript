@@ -8,7 +8,7 @@ interface ModelAttributes<T> {
   get<K extends keyof T>(key: K): T[K];
 }
 
-interface Sync<T> {
+interface ApiSync<T> {
   fetch(id: number): AxiosPromise;
   save(data: T): AxiosPromise;
 }
@@ -26,7 +26,7 @@ export class Model<T extends HasId> {
   constructor(
     private attributes: ModelAttributes<T>,
     private events: Events,
-    private sync: Sync<T>
+    private ApiSync: ApiSync<T>
   ) {}
 
   get on() {
@@ -51,14 +51,13 @@ export class Model<T extends HasId> {
       throw new Error("Cannot fetch without an id");
     }
 
-    this.sync.fetch(id).then((response: AxiosResponse): void => {
+    this.ApiSync.fetch(id).then((response: AxiosResponse): void => {
       this.set(response.data);
     });
   }
 
   save(): void {
-    this.sync
-      .save(this.attributes.getAll())
+    this.ApiSync.save(this.attributes.getAll())
       .then((response: AxiosResponse): void => {
         this.trigger("save");
       })
