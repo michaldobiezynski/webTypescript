@@ -3,11 +3,11 @@ export class UserForm {
 
   template(): string {
     return `
-        <div>
+      <div>
         <h1>User Form</h1>
         <input />
-        </div>
-        `;
+      </div>
+    `;
   }
 
   render(): void {
